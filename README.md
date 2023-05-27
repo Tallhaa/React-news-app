@@ -2,6 +2,12 @@
 
 This is a news app built with React.js that allows users to search for news articles using the Bing News Search API. Users can enter keywords or topics of interest and receive a list of relevant news articles.
 
+## Demo
+
+Insert gif or link to demo
+
+https://drive.google.com/file/d/12v-girWvW-JXipR7vQ9ZZSLl4-_H5tjD/view?usp=sharing
+
 ## Features
 
 - Search for news articles based on keywords or topics.
