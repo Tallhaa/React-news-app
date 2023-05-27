@@ -16,10 +16,11 @@ const NewsList = () => {
     const FinalSearch = () => {
         setFinalSearch(search);
         setSearch("");
+        setCount(5)
     };
 
     const GetNews = async () => {
-        const url = `https://bing-news-search1.p.rapidapi.com/news/search?q=${finalsearch}`;
+        const url = `https://bing-news-search1.p.rapidapi.com/news/search?q=${finalsearch}&count=30&safeSearch=Strict`;
         const options = {
             method: "GET",
             headers: {
@@ -42,14 +43,14 @@ const NewsList = () => {
 
     return (
         <>
-            <div className=" flex flex-row justify-between items-center mx-16 my-10 flex-wrap">
+            <div className="flex flex-nowrap justify-between px-10 my-8">
                 <div className="inline-flex mb-2">
                     <img
                         className="max-w-[50px] rounded-lg"
                         src="https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=869&q=80"
                         alt=""
                     />
-                    <h3 className="font-mono text-2xl px-2">News</h3>
+                    <h3 className="Montserrat text-2xl px-2">News</h3>
                 </div>
                 <div className="flex flex-row flex-wrap gap-2">
                     <input
@@ -67,56 +68,52 @@ const NewsList = () => {
                     </button>
                 </div>
             </div>
-            <h1 className="font-mono font-bold text-center text-5xl">News App</h1>
-
+            <h1 className="Montserrat font-bold text-center text-5xl mb-8">News App</h1>
             {
-                loading ? (
-                    <h1 className="text-center my-10">Loading..</h1>
-                )
-                    : news.length > 0 ? (
-                        news.slice(0, count).map((item) => (
-                            <div
-                                className="flex mx-auto item max-w-md rounded shadow-md my-5 flex-wrap p-6 overflow-hidden"
-                                key={item.url}
-                            >
+                loading && <h1 className="text-center my-10">Loading..</h1>
+            }
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-10 overflow-hidden">
+                {
+                    news.length > 0 ? (news.slice(0, count).map((item, i) =>
+                        <div className="shadow-md px-4 py-3" key={i}>
+                            <div >
                                 {item.image && item.image.thumbnail && (
                                     <img
-                                        className="w-full mb-2 rounded-md"
+                                        className="w-full mb-2 rounded-md h-48"
                                         src={item.image.thumbnail.contentUrl}
                                         alt={item.name}
                                     />
                                 )}
-                                <h3 className="font-mono font-medium text-3xl mb-2">{item.name}</h3>
-                                <div className="inline-flex">
-                                    <p className="font-sans text-slate-500 pb-2 mr-2">
-                                        {moment(item.datePublished).format("MMMM Do YYYY")}
-                                    </p>
-                                    <p className="font-sans text-slate-800 mr-2">From </p>
-                                    {item.provider.map((providerdata, i) => (
-                                        <p
-                                            key={i}
-                                            className="font-sans font-bold text-blue-800 pb-2 mr-2"
-                                        >
-                                            {providerdata.name}
-                                        </p>
-                                    ))}
-                                </div>
-                                <p className="font-sans mb-6">{item.description}</p>
-                                <a
-                                    className=" font-mono font-medium text-white bg-blue-500 hover:bg-blue-800 rounded-sm px-5 py-2.5"
-                                    href={item.url}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    Read more
-                                </a>
                             </div>
-                        ))
-                    )
-                        : (
-                            <h1 className="text-center">No Such Data</h1>
-                        )
-            }
+                            <h3 className="Montserrat text-4xl mb-2">{item.name}</h3>
+                            <div className="inline-flex">
+                                <p className="Hind text-slate-500 pb-2 mr-2">
+                                    {moment(item.datePublished).format("MMMM Do YYYY")}
+                                </p>
+                                <p className="Hind text-slate-800 mr-2">From </p>
+                                {item.provider.map((providerdata, i) => (
+                                    <p
+                                        key={i}
+                                        className="Hind font-bold text-blue-800 pb-2 mr-2"
+                                    >
+                                        {providerdata.name}
+                                    </p>
+                                ))}
+                            </div>
+                            <p className="Hind mb-6 text-base">{item.description}</p>
+                            <a
+                                className="Montserrat font-medium text-white bg-blue-500 hover:bg-blue-400 rounded-sm px-5 py-2.5 mb-3"
+                                href={item.url}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Read more
+                            </a>
+                        </div>
+                    ))
+                        : null
+                }
+            </div>
             {
                 news.length > 0 ? <LoadMore count={count} setCount={setCount} />
                     : null
