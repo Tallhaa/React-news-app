@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import moment from "moment";
+import LoadMore from "./LoadMore";
 
 const NewsList = () => {
     const [news, setNews] = useState([]);
     const [search, setSearch] = useState("");
     const [finalsearch, setFinalSearch] = useState("");
     const [loading, setLoading] = useState(false);
+    const [count, setCount] = useState(5);
     useEffect(() => {
         GetNews();
     }, [finalsearch]);
@@ -31,7 +33,6 @@ const NewsList = () => {
             setLoading(true);
             const response = await fetch(url, options);
             const result = await response.json();
-            console.log(result.value);
             setNews(result.value);
             setLoading(false);
         } catch (error) {
@@ -73,7 +74,7 @@ const NewsList = () => {
                     <h1 className="text-center my-10">Loading..</h1>
                 )
                     : news.length > 0 ? (
-                        news.map((item) => (
+                        news.slice(0, count).map((item) => (
                             <div
                                 className="flex mx-auto item max-w-md rounded shadow-md my-5 flex-wrap p-6 overflow-hidden"
                                 key={item.url}
@@ -115,6 +116,10 @@ const NewsList = () => {
                         : (
                             <h1 className="text-center">No Such Data</h1>
                         )
+            }
+            {
+                news.length > 0 ? <LoadMore count={count} setCount={setCount} />
+                    : null
             }
         </>
     );
