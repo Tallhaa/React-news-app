@@ -20,7 +20,7 @@ const NewsList = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `https://newsapi.org/v2/everything?q=${search}&apiKey=${apiKey}`,
+          `https://api.thenewsapi.com/v1/news/all?api_token=${apiKey}&search=${search}`,
           {
             method: "GET",
           }
@@ -28,7 +28,7 @@ const NewsList = () => {
         const result = await response.json();
         console.log(result);
 
-        setNews(result.articles);
+        setNews(result.data);
         setCount(5);
         setLoading(false);
       } catch (error) {
@@ -43,7 +43,7 @@ const NewsList = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `https://newsapi.org/v2/everything?q=bitcoin&apiKey=${apiKey}`,
+        `https://api.thenewsapi.com/v1/news/all?api_token=${apiKey}&search=bitcoin&limit=6`,
         {
           method: "GET",
         }
@@ -51,7 +51,7 @@ const NewsList = () => {
       const result = await response.json();
       console.log(result);
 
-      setNews(result.articles);
+      setNews(result.data);
       setCount(5);
       setLoading(false);
     } catch (error) {
@@ -94,10 +94,10 @@ const NewsList = () => {
         {news.slice(0, count).map((item, i) => (
           <div className="shadow-md px-4 py-3" key={i}>
             <div>
-              {item.urlToImage && (
+              {item.url && (
                 <img
                   className="w-full mb-2 rounded-md h-48"
-                  src={item.urlToImage}
+                  src={item.image_url}
                   alt={item.name}
                 />
               )}
@@ -105,16 +105,16 @@ const NewsList = () => {
             <h3 className="Montserrat text-4xl mb-2">{item.title}</h3>
             <div className="inline-flex">
               <p className="Hind text-slate-500 pb-2 mr-2">
-                {moment(item.publishedAt).format("MMMM Do YYYY")}
+                {moment(item.published_at).format("MMMM Do YYYY")}
               </p>
               <p className="Hind text-slate-800 mr-2">From </p>
 
               <p className="Hind font-bold text-blue-800 pb-2 mr-2">
-                {item.source.name}
+                {item.source}
               </p>
 
               <p className="Hind font-bold text-blue-800 pb-2 mr-2">
-                {item.name}
+                {item.title}
               </p>
             </div>
             <p className="Hind mb-6 text-base">{item.description}</p>
