@@ -112,10 +112,6 @@ const NewsList = () => {
               <p className="Hind font-bold text-blue-800 pb-2 mr-2">
                 {item.source}
               </p>
-
-              <p className="Hind font-bold text-blue-800 pb-2 mr-2">
-                {item.title}
-              </p>
             </div>
             <p className="Hind mb-6 text-base">{item.description}</p>
             <a
