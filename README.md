@@ -8,8 +8,6 @@ Insert gif or link to demo
 ![screely-1723267840402](https://github.com/user-attachments/assets/becfbeb9-e8b7-4be4-bb19-0d438bc4e085)
 
 
-https://drive.google.com/file/d/12v-girWvW-JXipR7vQ9ZZSLl4-_H5tjD/view?usp=sharing 
-
 ## Features
 
 - Search for news articles based on keywords or topics.
