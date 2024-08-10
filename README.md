@@ -5,8 +5,10 @@ This is a news app built with React.js that allows users to search for news arti
 ## Demo
 
 Insert gif or link to demo
+![screely-1723267840402](https://github.com/user-attachments/assets/becfbeb9-e8b7-4be4-bb19-0d438bc4e085)
 
-https://drive.google.com/file/d/12v-girWvW-JXipR7vQ9ZZSLl4-_H5tjD/view?usp=sharing
+
+https://drive.google.com/file/d/12v-girWvW-JXipR7vQ9ZZSLl4-_H5tjD/view?usp=sharing 
 
 ## Features
 
@@ -52,11 +54,9 @@ Enter keywords or topics of interest in the search bar and press Enter or click 
 ## Tech Stack
 
 - React.js: A JavaScript library for building user interfaces.
-- Bing News Search API: An API provided by Microsoft for searching news articles.
+- thenewsapi: An API provided by Microsoft for searching news articles.
 - HTML: Markup language for creating the structure of web pages.
 - CSS: Styling language for designing web pages.
 - Tailwind Css: A Css Framework
 
-## Acknowledgements
-
-- [Bing News Search API](https://www.microsoft.com/en-us/bing/apis/bing-news-search-api)
+)
